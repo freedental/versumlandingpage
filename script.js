@@ -83,8 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Joining...';
+            // Show loading state briefly
             submitBtn.disabled = true;
             
             try {
@@ -109,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 showNotification('There was an error submitting your request. Please try again.', 'error');
                 
                 // Reset button state
-                submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }
         });

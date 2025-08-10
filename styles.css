@@ -90,27 +90,38 @@ body {
 .logo-image {
     height: 180px;
     width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: scale(1.02);
 }
 
 .waitlist-text h1 {
-    font-size: 48px;
+    font-size: 56px;
     font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 40px;
+    line-height: 1.2;
+    margin-bottom: 30px;
     color: #216bc4;
     white-space: nowrap;
+    letter-spacing: -0.02em;
 }
 
 .highlight {
     color: #216bc4;
+    display: block;
+    margin-top: 8px;
+    font-size: 52px;
 }
 
 .description {
-    font-size: 20px;
-    line-height: 1.6;
-    margin-bottom: 50px;
-    color: #666;
-    max-width: 500px;
+    font-size: 22px;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    color: #555;
+    max-width: 520px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
 .waitlist-form {
@@ -123,11 +134,12 @@ body {
 
 .user-type-label {
     display: block;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 26px;
+    font-weight: 600;
     color: #216bc4;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     line-height: 1.2;
+    letter-spacing: -0.01em;
 }
 
 .user-type-dropdown {
@@ -196,21 +208,41 @@ body {
 }
 
 .submit-btn {
-    background: #216bc3;
+    background: linear-gradient(135deg, #216bc3 0%, #1a5aa3 100%);
     color: white;
     border: none;
-    padding: 16px 24px;
-    border-radius: 12px;
+    padding: 18px 40px;
+    border-radius: 14px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(33, 107, 195, 0.2);
+    box-shadow: 0 6px 20px rgba(33, 107, 195, 0.25);
+    position: relative;
+    overflow: hidden;
+    min-width: 180px;
 }
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+
 
 .submit-btn:hover {
     background: #1a5aa3;
@@ -262,8 +294,20 @@ body {
 
 /* Learn More Link */
 .learn-more-link {
-    margin-bottom: 40px;
-    margin-top: -25px;
+    margin-bottom: 50px;
+    margin-top: -10px;
+    position: relative;
+}
+
+.learn-more-link::after {
+    content: '';
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    width: 90%;
+    height: 2px;
+    background: #216bc3;
+    border-radius: 1px;
 }
 
 .learn-more-btn-text {
