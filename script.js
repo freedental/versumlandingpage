@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Waitlist Form Handler
     const waitlistForm = document.getElementById('waitlistForm');
     if (waitlistForm) {
-        waitlistForm.addEventListener('submit', function(e) {
+        waitlistForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const email = document.getElementById('email').value;
@@ -87,11 +87,31 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Joining...';
             submitBtn.disabled = true;
             
-                               // Simulate form submission (replace with actual API call)
-                   setTimeout(() => {
-                       // Show success page
-                       showSuccessPage(userType);
-                   }, 1500);
+            try {
+                // Use a simpler approach with form submission
+                const formData = new FormData();
+                formData.append('email', email);
+                formData.append('userType', userType);
+                
+                const response = await fetch('https://script.google.com/macros/s/AKfycbz3C2zvj5GLdQdLiLpurbY2w0Bj6OLsacUmXSx1TiNDWjpN7YSlD1J-P5hm3tkVZH2j/exec', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    // Show success page
+                    showSuccessPage(userType);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('There was an error submitting your request. Please try again.', 'error');
+                
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
     }
     
@@ -389,7 +409,7 @@ function showSuccessPage(userType) {
         <div class="success-content">
             <div class="success-card">
                 <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
+                    <img src="public/VersumLogo.png" alt="Versum Logo" class="success-logo">
                 </div>
                 <h1>You're on the waitlist!</h1>
                 <p class="success-message">
@@ -400,12 +420,6 @@ function showSuccessPage(userType) {
                         <i class="fas fa-arrow-left"></i>
                         <span>Back to Home</span>
                     </button>
-                </div>
-                <div class="social-links">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>

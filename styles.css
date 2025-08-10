@@ -746,9 +746,12 @@ body {
 }
 
 .success-icon {
-    font-size: 80px;
-    color: #4CAF50;
     margin-bottom: 30px;
+}
+
+.success-logo {
+    height: 180px;
+    width: auto;
 }
 
 .success-card h1 {
