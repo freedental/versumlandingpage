@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versum - Join the Waitlist</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Waitlist Page -->
+    <div class="waitlist-container">
+        <div class="background-image"></div>
+        <div class="overlay"></div>
+        <div class="waitlist-content">
+            <div class="waitlist-text">
+                                   <div class="logo">
+                       <img src="public/VersumLogo.png" alt="Versum Logo" class="logo-image">
+                   </div>
+                
+                <h1>Affordable Dental Care<br><span class="highlight">Sign Up Today</span></h1>
+                
+                <p class="description">
+                    Connect with dental students for quality, supervised dental care at no cost. 
+                    Join our waitlist to be among the first to experience free dental care when we launch.
+                </p>
+                <div class="learn-more-link">
+                    <button class="learn-more-btn-text" onclick="openModal()">
+                        Learn more about how it works
+                    </button>
+                </div>
+                
+                                       <form class="waitlist-form" id="waitlistForm">
+                           <div class="user-type-selection">
+                               <label class="user-type-label">Get Notified When We Launch</label>
+                               <select id="userType" name="userType" class="user-type-dropdown" required>
+                                   <option value="" disabled selected>Choose your role...</option>
+                                   <option value="patient">I need dental care (Patient)</option>
+                                   <option value="student">I provide dental care (Student)</option>
+                               </select>
+                           </div>
+                                           <div class="form-group">
+                    <input type="email" id="email" placeholder="Enter Your Email" required>
+                    <button type="submit" class="submit-btn">
+                        <span>Join Waitlist</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+            
+
+                
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="learnMoreModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="public/VersumLogo.png" alt="Versum Logo" class="modal-logo">
+                <button class="close-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="platform-overview">
+                    <h3>Revolutionizing Dental Care Access</h3>
+                    <p>Versum is the innovative platform that connects qualified dental students with patients seeking affordable, high-quality dental care. Our unique model ensures every procedure is performed under the direct supervision of licensed, practicing dental professionals, guaranteeing the highest standards of care while making dental health accessible to everyone.</p>
+                </div>
+                
+                <div class="modal-tabs">
+                    <button class="tab-btn active" onclick="switchTab('patients')">
+                        <i class="fas fa-heart"></i>
+                        <span>For Patients</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('students')">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>For Students</span>
+                    </button>
+                </div>
+                
+                <div class="user-sections">
+                    <div id="patients-tab" class="patient-section tab-content active">
+                        <div class="section-header">
+                            <i class="fas fa-heart"></i>
+                            <h3>For Patients</h3>
+                        </div>
+                        <div class="section-content">
+                            <h4>How It Works for Patients</h4>
+                            <div class="patient-steps">
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h5>Join Our Waitlist</h5>
+                                        <p>Sign up as a patient and get notified when we launch in your area</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h5>Browse Student Profiles</h5>
+                                        <p>View qualified dental students and their specialties, all supervised by licensed professionals</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h5>Book Your Appointment</h5>
+                                        <p>Choose your preferred student and schedule your free dental care appointment</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="patient-benefits">
+                                <h4>Why Choose Versum?</h4>
+                                <ul>
+                                    <li><strong>100% Free Dental Care</strong> - No hidden costs or fees</li>
+                                    <li><strong>Licensed Professional Supervision</strong> - Every procedure overseen by experienced dentists</li>
+                                    <li><strong>Easy Booking Platform</strong> - Schedule appointments with just a few clicks</li>
+                                    <li><strong>Quality Guaranteed</strong> - Same high standards as private practices</li>
+                                    <li><strong>Convenient Locations</strong> - Access to care near you</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="students-tab" class="student-section tab-content">
+                        <div class="section-header">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>For Dental Students</h3>
+                        </div>
+                        <div class="section-content">
+                            <h4>How It Works for Students</h4>
+                            <div class="student-steps">
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h5>Join Our Platform</h5>
+                                        <p>Sign up as a dental student and create your professional profile</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h5>Access Patient Database</h5>
+                                        <p>Browse our patient database and connect with patients seeking care</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h5>Gain Clinical Experience</h5>
+                                        <p>Provide care under professional supervision and build your portfolio</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="student-benefits">
+                                <h4>Why Join Versum?</h4>
+                                <ul>
+                                    <li><strong>Access to Patient Database</strong> - Connect with patients seeking care</li>
+                                    <li><strong>Direct Clinical Experience</strong> - Hands-on practice with real patients</li>
+                                    <li><strong>Professional Mentorship</strong> - Learn from licensed practicing dentists</li>
+                                    <li><strong>Skill Development</strong> - Master procedures under expert guidance</li>
+                                    <li><strong>Career Advancement</strong> - Build your portfolio and confidence</li>
+                                    <li><strong>Flexible Scheduling</strong> - Choose times that work for you</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="safety-section">
+                    <h3>Safety & Quality Assurance</h3>
+                    <p>Every dental procedure on our platform is performed under the direct supervision of licensed, practicing dental professionals. Our rigorous safety protocols ensure that patients receive the same high-quality care they would expect from any established dental practice, while students gain invaluable experience in a controlled, professional environment.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
