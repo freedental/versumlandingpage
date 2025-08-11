@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Versum - Join the Waitlist</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Improved font stack with better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -15,43 +18,47 @@
         <div class="overlay"></div>
         <div class="waitlist-content">
             <div class="waitlist-text">
-                                   <div class="logo">
-                       <img src="public/VersumLogo.png" alt="Versum Logo" class="logo-image">
-                   </div>
+                <div class="logo">
+                    <img src="public/VersumLogo.png" alt="Versum Logo" class="logo-image">
+                </div>
                 
-                <h1>Free Dental Care<br><span class="highlight">Sign Up Today</span></h1>
+                <h1 class="main-heading">
+                    <span class="heading-line">Free Dental Care</span>
+                    <span class="heading-highlight">Sign Up Today</span>
+                </h1>
                 
                 <p class="description">
-                    Get free dental care from qualified students under professional supervision. 
+                    Get free dental care from qualified students under professional supervision.
+                </p>
+                <p class="description-secondary">
                     Join our waitlist to be among the first to experience quality dental care at zero cost when we launch.
                 </p>
+                
                 <div class="learn-more-link">
                     <button class="learn-more-btn-text" onclick="openModal()">
                         Learn more about how it works
-                    </button>
-                </div>
-                
-                                       <form class="waitlist-form" id="waitlistForm">
-                           <div class="user-type-selection">
-                               <label class="user-type-label">Join the Waitlist</label>
-                               <select id="userType" name="userType" class="user-type-dropdown" required>
-                                   <option value="" disabled selected>Choose your role...</option>
-                                   <option value="patient">I need dental care (Patient)</option>
-                                   <option value="student">I provide dental care (Student)</option>
-                               </select>
-                           </div>
-                                           <div class="form-group">
-                    <input type="email" id="email" placeholder="Enter Your Email" required>
-                    <button type="submit" class="submit-btn">
-                        <span>Join Waitlist</span>
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
-            </form>
-            
-
                 
-
+                <form class="waitlist-form" id="waitlistForm">
+                    <div class="user-type-selection">
+                        <label class="user-type-label">Join the Waitlist</label>
+                        <select id="userType" name="userType" class="user-type-dropdown" required>
+                            <option value="" disabled selected>Choose your role...</option>
+                            <option value="patient">I need dental care (Patient)</option>
+                            <option value="student">I provide dental care (Student)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Email address</label>
+                        <input type="email" id="email" name="email" autocomplete="email" placeholder="Enter your email" required>
+                        <button type="submit" class="submit-btn">
+                            <span>Join Waitlist</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
