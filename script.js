@@ -1,64 +1,12 @@
 // Tab Navigation Functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.tab');
+    console.log('DOM loaded');
     
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            // Remove active class from all tabs
-            tabs.forEach(t => t.classList.remove('active'));
-            
-            // Add active class to clicked tab
-            this.classList.add('active');
-            
-            // Here you can add logic to show different content based on the tab
-            const tabText = this.textContent;
-            console.log('Switched to:', tabText);
-        });
-    });
+    // Initialize mobile menu
+    createMobileMenu();
     
-    // Smooth scrolling for anchor links
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
-    // Header scroll effect
-    const header = document.querySelector('.header');
-    let lastScrollTop = 0;
-    
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.backdropFilter = 'blur(10px)';
-        } else {
-            header.style.background = '#ffffff';
-            header.style.backdropFilter = 'none';
-        }
-        
-        lastScrollTop = scrollTop;
-    });
-    
-    // CTA Button click handlers
-    const ctaButtons = document.querySelectorAll('.cta-button, .hero-cta');
-    ctaButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Add your sign-up or consultation logic here
-            alert('Thank you for your interest! This would connect you to our sign-up form.');
-        });
-    });
+    // Initialize scroll-to-top button
+    createScrollToTopButton();
     
     // Waitlist Form Handler
     const waitlistForm = document.getElementById('waitlistForm');
@@ -247,9 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Initialize mobile menu
-    createMobileMenu();
-    
     // Resize handler
     window.addEventListener('resize', function() {
         if (window.innerWidth <= 768) {
@@ -379,7 +324,7 @@ function scrollToTop() {
 }
 
 // Add scroll to top button
-function addScrollToTopButton() {
+function createScrollToTopButton() {
     const scrollButton = document.createElement('button');
     scrollButton.className = 'scroll-to-top';
     scrollButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
@@ -415,8 +360,7 @@ function addScrollToTopButton() {
     scrollButton.addEventListener('click', scrollToTop);
 }
 
-// Initialize scroll to top button
-document.addEventListener('DOMContentLoaded', addScrollToTopButton);
+// Initialize scroll to top button - removed duplicate listener
 
 // Modal functions
 function openModal() {
