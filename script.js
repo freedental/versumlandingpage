@@ -79,12 +79,15 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Validate email
             if (!validateEmail(email)) {
-                showNotification('Please enter a valid email address.', 'error');
+                showNotification('Please enter a valid email address. Temporary or disposable email addresses are not allowed.', 'error');
                 return;
             }
             
-            // Show loading state briefly
+            // Show loading state
             submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            submitBtn.innerHTML = '<span>Joining...</span>';
+            console.log('Loading state applied'); // Debug
             
             try {
                 // Use a simpler approach with form submission
@@ -109,6 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Reset button state
                 submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.innerHTML = originalText;
             }
         });
     }
@@ -149,10 +154,69 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
     
-    // Form validation (if you add forms later)
+    // Form validation with spam prevention
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
+        if (!re.test(email)) {
+            return false;
+        }
+        
+        // Check for common spam patterns
+        const spamPatterns = [
+            /test/i,
+            /example/i,
+            /admin/i,
+            /root/i,
+            /noreply/i,
+            /no-reply/i,
+            /donotreply/i,
+            /do-not-reply/i,
+            /mailinator/i,
+            /10minutemail/i,
+            /guerrillamail/i,
+            /tempmail/i,
+            /temp-mail/i,
+            /yopmail/i,
+            /throwaway/i,
+            /trashmail/i,
+            /spam/i,
+            /fake/i,
+            /dummy/i,
+            /123456/i,
+            /qwerty/i,
+            /password/i,
+            /asdf/i
+        ];
+        
+        // Check if email contains spam patterns
+        for (let pattern of spamPatterns) {
+            if (pattern.test(email)) {
+                return false;
+            }
+        }
+        
+        // Check for suspicious domains (temporary email services)
+        const suspiciousDomains = [
+            'mailinator.com',
+            '10minutemail.com',
+            'guerrillamail.com',
+            'tempmail.org',
+            'yopmail.com',
+            'throwaway.email',
+            'trashmail.com',
+            'temp-mail.org',
+            'disposablemail.com',
+            'fakeinbox.com',
+            'tempr.email',
+            'getairmail.com'
+        ];
+        
+        const domain = email.split('@')[1]?.toLowerCase();
+        if (suspiciousDomains.includes(domain)) {
+            return false;
+        }
+        
+        return true;
     }
     
     // Mobile menu toggle (if needed)
@@ -357,12 +421,12 @@ function closeModal() {
 }
 
 // Close modal when clicking outside of it
-window.onclick = function(event) {
+document.addEventListener('click', function(event) {
     const modal = document.getElementById('learnMoreModal');
     if (event.target === modal) {
         closeModal();
     }
-}
+});
 
 // Close modal with Escape key
 document.addEventListener('keydown', function(event) {
@@ -397,7 +461,7 @@ function showSuccessPage(userType) {
         message = "Thank you for joining Versum! We'll notify you as soon as our platform goes live and you can start connecting with dental students for quality, supervised care.";
         icon = "fas fa-user";
     } else {
-        message = "Thank you for joining Versum! We'll notify you as soon as our platform goes live and you can start offering supervised dental care to patients in need.";
+        message = "Thank you for joining Versum! We'll notify you as soon as our platform goes live so you can connect with patients, provide supervised care, and build experience.";
         icon = "fas fa-graduation-cap";
     }
     

@@ -23,27 +23,28 @@
                 </div>
                 
                 <h1 class="main-heading">
-                    <span class="heading-line">Free Dental Care</span>
-                    <span class="heading-highlight">Sign Up Today</span>
+                    <span class="heading-highlight">Free dental care for patients.</span>
+                    <span class="heading-line">Experience for students.</span>
                 </h1>
                 
                 <p class="description">
-                    Get free dental care from qualified students under professional supervision.
-                </p>
-                <p class="description-secondary">
-                    Join our waitlist to be among the first to experience quality dental care at zero cost when we launch.
+                    We connect patients with qualified dental students working under licensed supervision. Patients receive quality care at zero cost; students gain hands‑on experience.
                 </p>
                 
                 <div class="learn-more-link">
                     <button class="learn-more-btn-text" onclick="openModal()">
-                        Learn more about how it works
+                        How Versum works
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
                 
-                <form class="waitlist-form" id="waitlistForm">
+                <form class="waitlist-form" id="waitlistForm" aria-labelledby="waitlistTitle">
+                    <div class="form-title-row">
+                        <div class="form-title-icon"><i class="fas fa-envelope"></i></div>
+                        <h4 id="waitlistTitle" class="form-title">Join the Waitlist</h4>
+                    </div>
                     <div class="user-type-selection">
-                        <label class="user-type-label">Join the Waitlist</label>
+                        <label class="user-type-label">Select your role</label>
                         <select id="userType" name="userType" class="user-type-dropdown" required>
                             <option value="" disabled selected>Choose your role...</option>
                             <option value="patient">I need dental care (Patient)</option>
@@ -159,8 +160,8 @@
                                 <div class="step-item">
                                     <div class="step-number">3</div>
                                     <div class="step-content">
-                                        <h5>Gain Clinical Experience</h5>
-                                        <p>Provide care under professional supervision and build your portfolio</p>
+                                        <h5>Build Experience</h5>
+                                        <p>Provide care under professional supervision and build your portfolio with real patient work</p>
                                     </div>
                                 </div>
                             </div>
@@ -172,6 +173,7 @@
                                     <li><strong>Direct Clinical Experience</strong> - Hands-on practice with real patients</li>
                                     <li><strong>Professional Mentorship</strong> - Learn from licensed practicing dentists</li>
                                     <li><strong>Skill Development</strong> - Master procedures under expert guidance</li>
+                                    <li><strong>Build Experience</strong> - Grow your portfolio and confidence with real cases</li>
                                     <li><strong>Career Advancement</strong> - Build your portfolio and confidence</li>
                                     <li><strong>Flexible Scheduling</strong> - Choose times that work for you</li>
                                 </ul>

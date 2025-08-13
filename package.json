@@ -1,0 +1,15 @@
+{
+  "name": "versumlandingpage",
+  "version": "1.0.0",
+  "description": "Versum landing page for dental care platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx --yes serve . -l 5173",
+    "dev": "npx --yes serve . -l 5173",
+    "build": "echo 'Static site - no build required'"
+  },
+  "keywords": ["dental", "healthcare", "landing-page"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {}
+}
