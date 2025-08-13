@@ -877,6 +877,8 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body { overflow-y: auto; }
+    .background-image { display: none; }
     .waitlist-content {
         max-width: 100%;
         padding: var(--space-12) var(--space-5);
@@ -885,20 +887,31 @@ html {
         clip-path: none;
         border-radius: var(--radius-2xl);
         min-height: auto;
+        height: auto;
         display: block;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(33, 107, 195, 0.08);
     }
+    .waitlist-content::after { display: none; }
+    .waitlist-container { height: auto; padding: var(--space-4); }
+    .waitlist-text { max-width: 100%; margin: 0 auto; }
+    .logo { justify-content: center; }
     
     .heading-line {
-        font-size: var(--font-size-4xl);
+        font-size: var(--font-size-xl);
+        white-space: nowrap;
     }
     
     .heading-highlight {
-        font-size: var(--font-size-5xl);
-        white-space: normal;
+        font-size: var(--font-size-2xl);
+        white-space: nowrap;
     }
     
     .description {
         font-size: var(--font-size-lg);
+        max-width: 34ch;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .form-group {
@@ -923,6 +936,23 @@ html {
     
     .modal-body {
         padding: var(--space-5) var(--space-6) var(--space-8);
+    }
+
+    /* Improve text contrast on photo background for mobile */
+    .overlay {
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.9) 100%
+        );
+    }
+
+    /* Form card comfort on mobile */
+    .waitlist-form {
+        padding: var(--space-6);
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

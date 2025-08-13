@@ -221,18 +221,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Mobile menu toggle (if needed)
     function createMobileMenu() {
-        const header = document.querySelector('.header-content');
-        const mobileMenuButton = document.createElement('button');
-        mobileMenuButton.className = 'mobile-menu-toggle';
-        mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
-        
-        mobileMenuButton.addEventListener('click', function() {
-            header.classList.toggle('mobile-menu-open');
-        });
-        
-        // Only show on mobile
+        const header = document.querySelector('.header, .header-content');
+        if (!header) {
+            return;
+        }
+
+        let mobileMenuButton = header.querySelector('.mobile-menu-toggle');
+        if (!mobileMenuButton) {
+            mobileMenuButton = document.createElement('button');
+            mobileMenuButton.className = 'mobile-menu-toggle';
+            mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
+            mobileMenuButton.addEventListener('click', function() {
+                header.classList.toggle('mobile-menu-open');
+            });
+        }
+
         if (window.innerWidth <= 768) {
-            header.appendChild(mobileMenuButton);
+            if (!header.contains(mobileMenuButton)) {
+                header.appendChild(mobileMenuButton);
+            }
+        } else {
+            if (header.contains(mobileMenuButton)) {
+                header.removeChild(mobileMenuButton);
+            }
         }
     }
     
