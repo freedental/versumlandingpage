@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize scroll-to-top button
     createScrollToTopButton();
     
+    // Initialize custom dropdown
+    initializeCustomDropdown();
+    
     // Waitlist Form Handler
     const waitlistForm = document.getElementById('waitlistForm');
     if (waitlistForm) {
@@ -405,6 +408,75 @@ function switchTab(tabName) {
     
     if (activeTabBtn) activeTabBtn.classList.add('active');
     if (activeTabContent) activeTabContent.classList.add('active');
+}
+
+// Custom Dropdown Functionality
+function initializeCustomDropdown() {
+    const dropdownToggle = document.getElementById('dropdownToggle');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const dropdownOptions = document.querySelectorAll('.dropdown-option');
+    const dropdownText = document.querySelector('.dropdown-text');
+    const hiddenInput = document.getElementById('userType');
+    
+    if (!dropdownToggle || !dropdownMenu) return;
+    
+    // Toggle dropdown
+    dropdownToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        if (isExpanded) {
+            closeDropdown();
+        } else {
+            openDropdown();
+        }
+    });
+    
+    // Handle option selection
+    dropdownOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            const text = this.textContent;
+            
+            // Update hidden input
+            hiddenInput.value = value;
+            
+            // Update display text
+            dropdownText.textContent = text;
+            dropdownText.classList.add('selected');
+            
+            // Update selected state
+            dropdownOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // Close dropdown
+            closeDropdown();
+        });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+            closeDropdown();
+        }
+    });
+    
+    // Close dropdown with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeDropdown();
+        }
+    });
+    
+    function openDropdown() {
+        dropdownMenu.classList.add('show');
+        dropdownToggle.setAttribute('aria-expanded', 'true');
+    }
+    
+    function closeDropdown() {
+        dropdownMenu.classList.remove('show');
+        dropdownToggle.setAttribute('aria-expanded', 'false');
+    }
 }
 
 // Success page function

@@ -258,7 +258,7 @@ body {
 .waitlist-form {
     margin-top: var(--space-8);
     margin-bottom: var(--space-10);
-    padding: var(--space-8);
+    padding: var(--space-10);
     background: var(--color-surface);
     border: 1px solid rgba(33, 107, 195, 0.4);
     border-radius: var(--radius-2xl);
@@ -268,13 +268,12 @@ body {
     animation: fadeInUp 0.8s ease forwards;
     animation-delay: 0.4s;
     opacity: 0;
+    /* Ensure proper form containment */
+    overflow: visible;
 }
 
 .waitlist-form .divider {
-    height: 1px;
-    background: linear-gradient(90deg, rgba(33,107,195,0.15), rgba(33,107,195,0));
-    margin: var(--space-4) 0 var(--space-6);
-    border-radius: 1px;
+    display: none;
 }
 
 /* Form Title Row */
@@ -317,14 +316,20 @@ body {
     font-size: var(--font-size-sm);
     font-weight: 700;
     color: var(--color-text-muted);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-1);
     line-height: 1.2;
     letter-spacing: 0.08em;
 }
 
-.user-type-dropdown {
+/* Custom Dropdown Styles */
+.custom-dropdown {
     width: 100%;
     max-width: 520px;
+    position: relative;
+}
+
+.custom-dropdown-toggle {
+    width: 100%;
     padding: var(--space-4) var(--space-5);
     border: 1px solid rgba(33, 107, 195, 0.35);
     border-radius: var(--radius-lg);
@@ -334,15 +339,78 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-normal);
-    margin-bottom: var(--space-5);
+    margin-bottom: 0;
     box-shadow: var(--shadow-sm);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23216bc3'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right var(--space-4) center;
-    background-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.custom-dropdown-toggle:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.custom-dropdown-toggle:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(33, 107, 195, 0.1), var(--shadow-md);
+}
+
+.custom-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-background);
+    border: 1px solid rgba(33, 107, 195, 0.35);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-normal);
+}
+
+.custom-dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-option {
+    padding: var(--space-3) var(--space-4);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    border-bottom: 1px solid rgba(33, 107, 195, 0.1);
+}
+
+.dropdown-option:last-child {
+    border-bottom: none;
+}
+
+.dropdown-option:hover {
+    background-color: rgba(33, 107, 195, 0.05);
+}
+
+.dropdown-option.selected {
+    background-color: rgba(33, 107, 195, 0.1);
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.dropdown-text {
+    color: var(--color-text-secondary);
+}
+
+.dropdown-text.selected {
+    color: var(--color-primary);
+    font-weight: 600;
 }
 
 .user-type-dropdown:invalid {
@@ -360,6 +428,12 @@ body {
     color: var(--color-primary);
     padding: var(--space-2);
 }
+
+
+
+
+
+
 
 .form-group {
     display: flex;
@@ -448,10 +522,62 @@ body {
     transform: translateX(4px);
 }
 
-/* Enhanced Form Interactions */
-.form-group input:focus,
-.user-type-dropdown:focus {
-    transform: translateY(-1px);
+
+
+/* Desktop-specific improvements */
+@media (min-width: 769px) {
+    .user-type-selection {
+        margin-bottom: var(--space-8);
+    }
+    
+
+    
+    .form-group {
+        gap: var(--space-5);
+    }
+    
+    .helper-text {
+        margin-bottom: var(--space-8);
+    }
+    
+    
+    
+    .learn-more-link {
+        margin-bottom: var(--space-8);
+        position: relative;
+    }
+    
+    .learn-more-btn-text {
+        background: none;
+        border: none;
+        color: var(--color-primary);
+        font-size: var(--font-size-lg);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition-normal);
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        padding: var(--space-2) 0;
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+    }
+    
+    .learn-more-btn-text:hover {
+        color: var(--color-primary-dark);
+        transform: translateX(4px);
+    }
+    
+    .learn-more-btn-text i {
+        font-size: var(--font-size-sm);
+        transition: transform var(--transition-normal);
+    }
+    
+    .learn-more-btn-text:hover i {
+        transform: translateX(4px);
+    }
 }
 
 /* Loading State for Submit Button */
@@ -481,7 +607,7 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Modal Styles */
+/* Modal Styles - Complete Redo */
 .modal {
     display: none;
     position: fixed;
@@ -551,6 +677,207 @@ body {
 
 .modal-body {
     padding: var(--space-8) var(--space-10) var(--space-10);
+}
+
+/* Modal Tab Styles */
+.modal-tabs {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border-bottom: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.tab-btn:hover {
+    color: var(--color-primary);
+    background-color: rgba(33, 107, 195, 0.05);
+}
+
+.tab-btn.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+    background-color: rgba(33, 107, 195, 0.1);
+}
+
+.tab-btn i {
+    font-size: var(--font-size-lg);
+}
+
+/* Modal Content Sections */
+.user-sections {
+    margin-bottom: var(--space-8);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.section-header i {
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary);
+    width: 40px;
+    text-align: center;
+}
+
+.section-header h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.section-content h4 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+}
+
+/* Steps Styling */
+.patient-steps,
+.student-steps {
+    margin-bottom: var(--space-8);
+}
+
+.step-item {
+    display: flex;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    align-items: flex-start;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    flex-shrink: 0;
+}
+
+.step-content h5 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+    margin-top: 0;
+}
+
+.step-content p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Benefits Lists */
+.patient-benefits,
+.student-benefits {
+    margin-bottom: var(--space-8);
+}
+
+.patient-benefits h4,
+.student-benefits h4 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.patient-benefits ul,
+.student-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.patient-benefits li,
+.student-benefits li {
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid rgba(33, 107, 195, 0.1);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+}
+
+.patient-benefits li:last-child,
+.student-benefits li:last-child {
+    border-bottom: none;
+}
+
+.patient-benefits strong,
+.student-benefits strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+/* Safety Section */
+.safety-section {
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+}
+
+.safety-section h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.safety-section p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Platform Overview */
+.platform-overview {
+    margin-bottom: var(--space-8);
+}
+
+.platform-overview h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.platform-overview p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    font-size: var(--font-size-lg);
 }
 
 /* Success Page Styles */
@@ -667,17 +994,19 @@ body {
     .waitlist-form {
         width: 100%;
         max-width: 600px;
-        padding: var(--space-6);
+        padding: var(--space-8);
         box-shadow: var(--shadow-lg);
         border-radius: var(--radius-xl);
     }
 
-    .form-group { gap: var(--space-3); }
+    .form-group { gap: var(--space-4); }
     .user-type-dropdown,
     .form-group input {
         font-size: var(--font-size-base);
         padding: var(--space-4) var(--space-5);
     }
+    
+
 
     .logo-image { height: 110px; }
 
@@ -713,6 +1042,10 @@ body {
     }
 
     .waitlist-text, .waitlist-form { max-width: 560px; }
+    
+    .user-type-selection {
+        margin-bottom: var(--space-6);
+    }
 
     .heading-line { font-size: clamp(1.5rem, 2vw + 0.2rem, 2rem); }
     .heading-highlight { font-size: clamp(1.6rem, 2.1vw + 0.2rem, 2.1rem); }
@@ -798,7 +1131,7 @@ body {
     .form-group {
         flex-direction: column;
         max-width: 100%;
-        gap: var(--space-3);
+        gap: var(--space-4);
     }
     
     .submit-btn {
@@ -809,7 +1142,7 @@ body {
     }
     
     .waitlist-form {
-        padding: var(--space-6);
+        padding: var(--space-8);
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -847,16 +1180,17 @@ body {
         font-size: var(--font-size-xs);
         letter-spacing: 0.12em;
         color: var(--color-text-muted);
+        margin-bottom: var(--space-3);
     }
+    
+
     
     .learn-more-link { 
         margin-top: var(--space-4); 
         margin-bottom: var(--space-6); 
     }
     
-    .user-type-dropdown { 
-        margin-bottom: var(--space-4); 
-    }
+
     
     .learn-more-btn-text { 
         font-weight: 600; 
@@ -864,11 +1198,11 @@ body {
     }
     
     .helper-text {
-        margin-top: var(--space-2);
-        margin-bottom: var(--space-4);
-        font-size: var(--font-size-sm);
-        color: var(--color-text-muted);
-    }
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-6);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
     
     .modal-content {
         margin: 10% auto;
@@ -882,6 +1216,81 @@ body {
     
     .modal-body {
         padding: var(--space-5) var(--space-6) var(--space-8);
+    }
+    
+    /* Mobile Modal Enhancements */
+    .modal-logo {
+        height: 80px;
+    }
+    
+    .modal-tabs {
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+    
+    .tab-btn {
+        padding: var(--space-3) var(--space-4);
+        font-size: var(--font-size-sm);
+        justify-content: center;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-3);
+    }
+    
+    .section-header i {
+        font-size: var(--font-size-xl);
+        width: auto;
+    }
+    
+    .step-item {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-3);
+    }
+    
+    .step-number {
+        margin: 0 auto;
+    }
+    
+    .platform-overview h3 {
+        font-size: var(--font-size-xl);
+        text-align: center;
+    }
+    
+    .safety-section h3 {
+        text-align: center;
+    }
+    
+    /* Additional Mobile Modal Fixes */
+    .modal-content {
+        margin: 5% auto;
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .modal-header {
+        padding: var(--space-6) var(--space-6) var(--space-4);
+    }
+    
+    .modal-body {
+        padding: var(--space-6) var(--space-6) var(--space-8);
+    }
+    
+    .tab-content {
+        padding: var(--space-4) 0;
+    }
+    
+    .section-content h4 {
+        font-size: var(--font-size-lg);
+        text-align: center;
+    }
+    
+    .patient-benefits h4,
+    .student-benefits h4 {
+        text-align: center;
     }
 }
 

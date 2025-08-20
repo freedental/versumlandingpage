@@ -46,11 +46,17 @@
                     <div class="divider"></div>
                     <div class="user-type-selection">
                         <label class="user-type-label kicker">Select your role</label>
-                        <select id="userType" name="userType" class="user-type-dropdown" required>
-                            <option value="" disabled selected>Choose your role...</option>
-                            <option value="patient">I need dental care (Patient)</option>
-                            <option value="student">I provide dental care (Student)</option>
-                        </select>
+                        <div class="custom-dropdown" id="customDropdown">
+                            <button type="button" class="custom-dropdown-toggle" id="dropdownToggle" aria-haspopup="listbox" aria-expanded="false">
+                                <span class="dropdown-text">Choose your role...</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <ul class="custom-dropdown-menu" id="dropdownMenu" role="listbox">
+                                <li class="dropdown-option" data-value="patient" role="option">I need dental care (Patient)</li>
+                                <li class="dropdown-option" data-value="student" role="option">I provide dental care (Student)</li>
+                            </ul>
+                            <input type="hidden" id="userType" name="userType" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="email" class="sr-only">Email address</label>
