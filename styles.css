@@ -94,9 +94,9 @@ body {
     border: 0;
 }
 
-/* Desktop Layout (Default) */
+/* Desktop Layout (Default) - Responsive No Text Cutoff */
 .waitlist-container {
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -129,15 +129,15 @@ body {
 .waitlist-content {
     position: relative;
     z-index: 3;
-    width: 58%;
-    height: 100vh;
+    width: clamp(50%, 58%, 70%);
+    min-height: 100vh;
     background: var(--color-background);
     padding: var(--space-20);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    clip-path: polygon(0 0, 68% 0, 64% 100%, 0% 100%);
+    border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
     filter: drop-shadow(0 10px 40px rgba(0,0,0,0.08));
 }
 
@@ -523,6 +523,41 @@ body {
 }
 
 
+
+/* Responsive breakpoints for better text visibility */
+@media (max-width: 1400px) {
+    .waitlist-content {
+        width: clamp(55%, 62%, 75%);
+    }
+}
+
+@media (max-width: 1200px) {
+    .waitlist-content {
+        width: clamp(60%, 68%, 80%);
+    }
+}
+
+@media (max-width: 1000px) {
+    .waitlist-content {
+        width: clamp(65%, 75%, 85%);
+    }
+}
+
+/* High zoom level protection - ensures text is never cut off */
+@media (min-width: 1200px) and (max-width: 1600px) {
+    .waitlist-content {
+        width: clamp(50%, 55%, 65%);
+        padding: var(--space-16);
+    }
+}
+
+/* Extra large screens - maintain good proportions */
+@media (min-width: 1600px) {
+    .waitlist-content {
+        width: clamp(45%, 50%, 60%);
+        padding: var(--space-24);
+    }
+}
 
 /* Desktop-specific improvements */
 @media (min-width: 769px) {
@@ -961,7 +996,7 @@ body {
     .heading-highlight { font-size: calc(var(--font-size-2xl) + 4px); letter-spacing: -0.02em; }
 }
 
-/* Tablet/smaller desktop adjustments so image/diagonal never crowd text */
+/* Tablet/smaller desktop adjustments - no text cutoff */
 @media (max-width: 1100px) and (min-width: 769px) {
     body { overflow-y: auto; }
 
@@ -978,9 +1013,9 @@ body {
     }
 
     .waitlist-content {
-        width: 66%;
-        /* Slightly flatter diagonal for tighter widths */
-        clip-path: polygon(0 0, 70% 0, 62% 100%, 0% 100%);
+        width: clamp(70%, 75%, 85%);
+        /* Remove problematic clip-path */
+        border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
         padding: var(--space-16);
         height: auto;
         min-height: 100vh;
@@ -1029,15 +1064,16 @@ body {
     }
 }
 
-/* Narrower desktop/tablet: give content even more room and reduce diagonal */
+/* Narrower desktop/tablet: give content even more room - no text cutoff */
 @media (max-width: 900px) and (min-width: 769px) {
     .overlay {
         background: linear-gradient(90deg, rgba(255,255,255,0) 72%, rgba(227,242,253,0.35) 100%);
     }
 
     .waitlist-content {
-        width: 72%;
-        clip-path: polygon(0 0, 74% 0, 66% 100%, 0% 100%);
+        width: clamp(75%, 80%, 90%);
+        /* Remove problematic clip-path */
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
         padding: var(--space-14);
     }
 
