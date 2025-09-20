@@ -94,51 +94,154 @@ body {
     border: 0;
 }
 
-/* Desktop Layout (Default) - Responsive No Text Cutoff */
-.waitlist-container {
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0;
-    overflow: hidden;
+/* Large Desktop Layout (1400px+) - Side-by-side with image */
+@media (min-width: 1400px) {
+    .waitlist-container {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: -40% center;
+        z-index: 1;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0) 55%, rgba(227,242,253,0.15) 100%);
+        z-index: 2;
+    }
+
+    .waitlist-content {
+        position: relative;
+        z-index: 3;
+        width: 50%;
+        height: 100vh;
+        background: var(--color-background);
+        padding: var(--space-20);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
+        filter: drop-shadow(0 10px 40px rgba(0,0,0,0.08));
+    }
 }
 
-.background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: -40% center;
-    z-index: 1;
+/* Desktop Layout (1200px-1399px) - Slightly wider content area */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .waitlist-container {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: -30% center;
+        z-index: 1;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0) 60%, rgba(227,242,253,0.2) 100%);
+        z-index: 2;
+    }
+
+    .waitlist-content {
+        position: relative;
+        z-index: 3;
+        width: 55%;
+        height: 100vh;
+        background: var(--color-background);
+        padding: var(--space-18);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
+        filter: drop-shadow(0 10px 40px rgba(0,0,0,0.08));
+    }
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 55%, rgba(227,242,253,0.15) 100%);
-    z-index: 2;
-}
+/* Default Desktop Layout (769px-1199px) - Stacked layout with background */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .waitlist-container {
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-8);
+        background: linear-gradient(135deg, var(--color-background) 0%, #f8fafc 100%);
+    }
 
-.waitlist-content {
-    position: relative;
-    z-index: 3;
-    width: clamp(50%, 58%, 70%);
-    min-height: 100vh;
-    background: var(--color-background);
-    padding: var(--space-20);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
-    filter: drop-shadow(0 10px 40px rgba(0,0,0,0.08));
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        z-index: 1;
+        opacity: 0.3;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 100%);
+        z-index: 2;
+    }
+
+    .waitlist-content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 600px;
+        background: var(--color-background);
+        padding: var(--space-16);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--radius-2xl);
+        filter: drop-shadow(0 20px 60px rgba(0,0,0,0.1));
+        text-align: center;
+    }
 }
 
 .waitlist-text {
@@ -524,38 +627,55 @@ body {
 
 
 
-/* Responsive breakpoints for better text visibility */
-@media (max-width: 1400px) {
-    .waitlist-content {
-        width: clamp(55%, 62%, 75%);
+/* Tablet Layout (481px-768px) - Card-based layout */
+@media (min-width: 481px) and (max-width: 768px) {
+    .waitlist-container {
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-6);
+        background: linear-gradient(135deg, var(--color-background) 0%, #f8fafc 100%);
     }
-}
 
-@media (max-width: 1200px) {
-    .waitlist-content {
-        width: clamp(60%, 68%, 80%);
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        z-index: 1;
+        opacity: 0.2;
     }
-}
 
-@media (max-width: 1000px) {
-    .waitlist-content {
-        width: clamp(65%, 75%, 85%);
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.98) 100%);
+        z-index: 2;
     }
-}
 
-/* High zoom level protection - ensures text is never cut off */
-@media (min-width: 1200px) and (max-width: 1600px) {
     .waitlist-content {
-        width: clamp(50%, 55%, 65%);
-        padding: var(--space-16);
-    }
-}
-
-/* Extra large screens - maintain good proportions */
-@media (min-width: 1600px) {
-    .waitlist-content {
-        width: clamp(45%, 50%, 60%);
-        padding: var(--space-24);
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 500px;
+        background: var(--color-background);
+        padding: var(--space-12);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--radius-xl);
+        filter: drop-shadow(0 15px 40px rgba(0,0,0,0.08));
+        text-align: center;
     }
 }
 
@@ -989,41 +1109,81 @@ body {
 
 /* Removed trust badges */
 
+/* Mobile Layout (up to 768px) - Full-width card layout */
 @media (max-width: 768px) {
-    .trust-badges { justify-content: center; gap: var(--space-2); margin-bottom: var(--space-6); }
-    .trust-badges .badge { font-size: var(--font-size-xs); padding: 5px 9px; }
-    .heading-line { font-size: calc(var(--font-size-xl) + 4px); letter-spacing: -0.012em; }
-    .heading-highlight { font-size: calc(var(--font-size-2xl) + 4px); letter-spacing: -0.02em; }
-}
-
-/* Tablet/smaller desktop adjustments - no text cutoff */
-@media (max-width: 1100px) and (min-width: 769px) {
-    body { overflow-y: auto; }
-
+    body { 
+        overflow-y: auto; 
+    }
+    
     .waitlist-container {
         height: auto;
         min-height: 100vh;
-        align-items: flex-start;
-        overflow: visible;
+        padding: var(--space-4);
+        background: linear-gradient(135deg, var(--color-background) 0%, #f8fafc 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .background-image {
+        display: none; /* Hide on mobile for better performance and cleaner look */
     }
 
     .overlay {
-        /* Push tint farther right to keep left content clean */
-        background: linear-gradient(90deg, rgba(255,255,255,0) 65%, rgba(227,242,253,0.35) 100%);
+        display: none;
     }
 
     .waitlist-content {
-        width: clamp(70%, 75%, 85%);
-        /* Remove problematic clip-path */
-        border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
-        padding: var(--space-16);
+        width: 100%;
         height: auto;
-        min-height: 100vh;
+        min-height: auto;
+        padding: var(--space-8);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-lg);
+        filter: none;
+        background: var(--color-background);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
-    /* Keep all left-side information readable and not crowded */
-    .waitlist-text {
-        max-width: 600px;
+    .trust-badges { 
+        justify-content: center; 
+        gap: var(--space-2); 
+        margin-bottom: var(--space-6); 
+    }
+    
+    .trust-badges .badge { 
+        font-size: var(--font-size-xs); 
+        padding: 5px 9px; 
+    }
+    
+    .logo-image { 
+        height: 110px; 
+    }
+
+    .main-heading { 
+        margin-bottom: var(--space-6); 
+    }
+    
+    .heading-line { 
+        font-size: clamp(1.6rem, 2.2vw + 0.2rem, 2.2rem);
+        white-space: normal;
+        letter-spacing: -0.012em;
+    }
+    
+    .heading-highlight {
+        font-size: clamp(1.7rem, 2.3vw + 0.2rem, 2.3rem);
+        white-space: normal;
+        letter-spacing: -0.02em;
+    }
+    
+    .description {
+        font-size: var(--font-size-base);
+        line-height: 1.65;
     }
 
     .waitlist-form {
@@ -1032,214 +1192,22 @@ body {
         padding: var(--space-8);
         box-shadow: var(--shadow-lg);
         border-radius: var(--radius-xl);
+        margin-top: var(--space-6);
     }
 
-    .form-group { gap: var(--space-4); }
-    .user-type-dropdown,
+    .form-group { 
+        gap: var(--space-4); 
+    }
+    
+    .custom-dropdown-toggle,
     .form-group input {
         font-size: var(--font-size-base);
         padding: var(--space-4) var(--space-5);
     }
-    
-
-
-    .logo-image { height: 110px; }
-
-    .main-heading { margin-bottom: var(--space-6); }
-    .heading-line { 
-        font-size: clamp(1.6rem, 2.2vw + 0.2rem, 2.2rem);
-        white-space: normal;
-    }
-    .heading-highlight {
-        font-size: clamp(1.7rem, 2.3vw + 0.2rem, 2.3rem);
-        white-space: normal;
-    }
-    .description {
-        font-size: var(--font-size-base);
-        line-height: 1.65;
-    }
-
-    .waitlist-form {
-        margin-top: var(--space-6);
-    }
 }
 
-/* Narrower desktop/tablet: give content even more room - no text cutoff */
-@media (max-width: 900px) and (min-width: 769px) {
-    .overlay {
-        background: linear-gradient(90deg, rgba(255,255,255,0) 72%, rgba(227,242,253,0.35) 100%);
-    }
-
-    .waitlist-content {
-        width: clamp(75%, 80%, 90%);
-        /* Remove problematic clip-path */
-        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-        padding: var(--space-14);
-    }
-
-    .waitlist-text, .waitlist-form { max-width: 560px; }
-    
-    .user-type-selection {
-        margin-bottom: var(--space-6);
-    }
-
-    .heading-line { font-size: clamp(1.5rem, 2vw + 0.2rem, 2rem); }
-    .heading-highlight { font-size: clamp(1.6rem, 2.1vw + 0.2rem, 2.1rem); }
-    .description { font-size: 0.98rem; line-height: 1.65; }
-}
-
+/* Mobile Modal Enhancements */
 @media (max-width: 768px) {
-    body { 
-        overflow-y: auto; 
-    }
-    
-    .waitlist-container {
-        height: auto;
-        padding: 0;
-        justify-content: flex-start;
-        align-items: flex-start;
-        overflow: visible;
-    }
-    
-    .background-image { 
-        display: none; 
-    }
-    
-    .overlay { 
-        display: none; 
-    }
-    
-    .waitlist-content {
-        width: 100%;
-        max-width: 100%;
-        padding: var(--space-8) var(--space-4);
-        margin: 0;
-        text-align: center;
-        min-height: auto;
-        height: auto;
-        display: block;
-        box-shadow: none;
-        border: none;
-        position: relative;
-        left: 0;
-        right: 0;
-        /* Remove desktop-only diagonal on mobile */
-        clip-path: none;
-        filter: none;
-    }
-    
-    .waitlist-text { 
-        max-width: 100%; 
-        margin: 0 auto; 
-        padding: 0 var(--space-4);
-    }
-    
-    .main-heading { 
-        margin-bottom: var(--space-6); 
-    }
-    
-    .logo { 
-        justify-content: center; 
-        margin-bottom: var(--space-6);
-    }
-    
-    .logo-image {
-        height: 100px;
-    }
-    
-    .heading-line {
-        font-size: calc(var(--font-size-lg) + 2px);
-        letter-spacing: -0.012em;
-        white-space: normal;
-    }
-    
-    .heading-highlight {
-        font-size: calc(var(--font-size-xl) + 2px);
-        letter-spacing: -0.02em;
-        white-space: normal;
-    }
-    
-    .description {
-        font-size: var(--font-size-base);
-        line-height: 1.7;
-    }
-    
-    .form-group {
-        flex-direction: column;
-        max-width: 100%;
-        gap: var(--space-4);
-    }
-    
-    .submit-btn {
-        width: 100%;
-        justify-content: center;
-        padding: var(--space-4) var(--space-8);
-        border-radius: var(--radius-lg);
-    }
-    
-    .waitlist-form {
-        padding: var(--space-8);
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: var(--space-6);
-        background: linear-gradient(180deg, rgba(255,255,255,0.98), #ffffff);
-        border: 1px solid rgba(33, 107, 195, 0.22);
-        border-radius: var(--radius-2xl);
-        box-shadow: 0 16px 40px rgba(33, 107, 195, 0.14);
-        text-align: left;
-    }
-    
-    .form-title { 
-        font-size: var(--font-size-2xl); 
-    }
-    
-    .form-title-icon { 
-        width: 44px; 
-        height: 44px; 
-        font-size: var(--font-size-xl); 
-    }
-    
-    .user-type-dropdown,
-    .form-group input {
-        padding: var(--space-4) var(--space-5);
-        border: 1px solid rgba(33, 107, 195, 0.35);
-        border-radius: var(--radius-lg);
-    }
-    
-    .form-title-row {
-        padding-bottom: var(--space-4);
-        margin-bottom: var(--space-5);
-    }
-    
-    .user-type-label.kicker {
-        font-size: var(--font-size-xs);
-        letter-spacing: 0.12em;
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-3);
-    }
-    
-
-    
-    .learn-more-link { 
-        margin-top: var(--space-4); 
-        margin-bottom: var(--space-6); 
-    }
-    
-
-    
-    .learn-more-btn-text { 
-        font-weight: 600; 
-        text-underline-offset: 3px; 
-    }
-    
-    .helper-text {
-    margin-top: var(--space-2);
-    margin-bottom: var(--space-6);
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-}
-    
     .modal-content {
         margin: 10% auto;
         width: 95%;
@@ -1254,7 +1222,6 @@ body {
         padding: var(--space-5) var(--space-6) var(--space-8);
     }
     
-    /* Mobile Modal Enhancements */
     .modal-logo {
         height: 80px;
     }
@@ -1298,21 +1265,6 @@ body {
     
     .safety-section h3 {
         text-align: center;
-    }
-    
-    /* Additional Mobile Modal Fixes */
-    .modal-content {
-        margin: 5% auto;
-        width: 95%;
-        max-height: 90vh;
-    }
-    
-    .modal-header {
-        padding: var(--space-6) var(--space-6) var(--space-4);
-    }
-    
-    .modal-body {
-        padding: var(--space-6) var(--space-6) var(--space-8);
     }
     
     .tab-content {
