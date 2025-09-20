@@ -94,121 +94,16 @@ body {
     border: 0;
 }
 
-/* Large Desktop Layout (1400px+) - Side-by-side with image */
+/* Large Desktop Layout (1400px+) - Form overlay on image */
 @media (min-width: 1400px) {
     .waitlist-container {
         height: 100vh;
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         padding: 0;
         overflow: hidden;
-    }
-
-    .background-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        object-position: -40% center;
-        z-index: 1;
-        /* Prevent image from changing size during scroll */
-        transform: translateZ(0);
-        will-change: auto;
-    }
-
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: linear-gradient(90deg, rgba(255,255,255,0) 55%, rgba(227,242,253,0.15) 100%);
-        z-index: 2;
-    }
-
-    .waitlist-content {
-        position: relative;
-        z-index: 3;
-        width: 50%;
-        height: 100vh;
-        background: var(--color-background);
-        padding: var(--space-20);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
-        filter: drop-shadow(0 10px 40px rgba(0,0,0,0.08));
-    }
-}
-
-/* Desktop Layout (1200px-1399px) - Slightly wider content area */
-@media (min-width: 1200px) and (max-width: 1399px) {
-    .waitlist-container {
-        height: 100vh;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 0;
-        overflow: hidden;
-    }
-
-    .background-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        object-position: -30% center;
-        z-index: 1;
-        /* Prevent image from changing size during scroll */
-        transform: translateZ(0);
-        will-change: auto;
-    }
-
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: linear-gradient(90deg, rgba(255,255,255,0) 60%, rgba(227,242,253,0.2) 100%);
-        z-index: 2;
-    }
-
-    .waitlist-content {
-        position: relative;
-        z-index: 3;
-        width: 55%;
-        height: 100vh;
-        background: var(--color-background);
-        padding: var(--space-18);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
-        filter: drop-shadow(0 10px 40px rgba(0,0,0,0.08));
-    }
-}
-
-/* Default Desktop Layout (769px-1199px) - Stacked layout with background */
-@media (min-width: 769px) and (max-width: 1199px) {
-    .waitlist-container {
-        min-height: 100vh;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: var(--space-8);
-        background: linear-gradient(135deg, var(--color-background) 0%, #f8fafc 100%);
     }
 
     .background-image {
@@ -220,8 +115,6 @@ body {
         object-fit: cover;
         object-position: center center;
         z-index: 1;
-        opacity: 0.3;
-        /* Prevent image from changing size during scroll */
         transform: translateZ(0);
         will-change: auto;
     }
@@ -232,7 +125,7 @@ body {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 100%);
+        background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
         z-index: 2;
     }
 
@@ -241,15 +134,125 @@ body {
         z-index: 3;
         width: 100%;
         max-width: 600px;
-        background: var(--color-background);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
         padding: var(--space-16);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         border-radius: var(--radius-2xl);
-        filter: drop-shadow(0 20px 60px rgba(0,0,0,0.1));
+        box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         text-align: center;
+        margin: var(--space-8);
+    }
+}
+
+/* Desktop Layout (1200px-1399px) - Form overlay on image */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .waitlist-container {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center center;
+        z-index: 1;
+        transform: translateZ(0);
+        will-change: auto;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.05) 100%);
+        z-index: 2;
+    }
+
+    .waitlist-content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 550px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: var(--space-14);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--radius-2xl);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        text-align: center;
+        margin: var(--space-6);
+    }
+}
+
+/* Tablet Layout (769px-1199px) - Form overlay on image */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .waitlist-container {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-6);
+        overflow: hidden;
+    }
+
+    .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center center;
+        z-index: 1;
+        transform: translateZ(0);
+        will-change: auto;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 100%);
+        z-index: 2;
+    }
+
+    .waitlist-content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        padding: var(--space-12);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        text-align: center;
+        margin: var(--space-4);
     }
 }
 
@@ -636,21 +639,16 @@ body {
 
 
 
-/* Tablet Layout (481px-768px) - Stable card layout */
+/* Mobile Tablet Layout (481px-768px) - Form overlay on image */
 @media (min-width: 481px) and (max-width: 768px) {
     .waitlist-container {
         height: 100vh;
-        min-height: 100vh;
         position: relative;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: var(--space-6);
-        background: linear-gradient(135deg, var(--color-background) 0%, #f8fafc 100%);
-        /* Prevent viewport changes from affecting layout */
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        padding: var(--space-4);
+        overflow: hidden;
     }
 
     .background-image {
@@ -662,8 +660,6 @@ body {
         object-fit: cover;
         object-position: center center;
         z-index: 1;
-        opacity: 0.15;
-        /* Prevent image from changing size during scroll */
         transform: translateZ(0);
         will-change: auto;
     }
@@ -674,7 +670,7 @@ body {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.98) 100%);
+        background: linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 100%);
         z-index: 2;
     }
 
@@ -682,18 +678,18 @@ body {
         position: relative;
         z-index: 3;
         width: 100%;
-        max-width: 500px;
-        background: var(--color-background);
-        padding: var(--space-12);
+        max-width: 450px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(6px);
+        padding: var(--space-10);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border-radius: var(--radius-xl);
-        filter: drop-shadow(0 15px 40px rgba(0,0,0,0.08));
+        border-radius: var(--radius-lg);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         text-align: center;
-        /* Ensure content doesn't shift during scroll */
-        margin: var(--space-4) 0;
+        margin: var(--space-3);
     }
 }
 
@@ -1127,8 +1123,8 @@ body {
 
 /* Removed trust badges */
 
-/* Mobile Layout (up to 768px) - Stable card layout */
-@media (max-width: 768px) {
+/* Mobile Layout (up to 480px) - Form overlay on image */
+@media (max-width: 480px) {
     /* Prevent mobile browser address bar from affecting layout */
     html {
         height: 100%;
@@ -1137,12 +1133,10 @@ body {
     
     body { 
         overflow-y: auto; 
-        /* Prevent viewport changes from affecting layout */
         height: 100%;
         height: -webkit-fill-available;
         position: fixed;
         width: 100%;
-        /* Prevent zoom on input focus */
         touch-action: manipulation;
     }
     
@@ -1150,47 +1144,53 @@ body {
         height: 100vh;
         min-height: 100vh;
         min-height: -webkit-fill-available;
-        padding: var(--space-4);
-        background: linear-gradient(135deg, var(--color-background) 0%, #f8fafc 100%);
+        position: relative;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        /* Prevent scroll-related layout shifts */
-        position: relative;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        /* Ensure stable layout */
+        padding: var(--space-3);
+        overflow: hidden;
+    }
+
+    .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center center;
+        z-index: 1;
         transform: translateZ(0);
         will-change: auto;
     }
 
-    .background-image {
-        display: none; /* Hide on mobile for better performance and cleaner look */
-    }
-
     .overlay {
-        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 100%);
+        z-index: 2;
     }
 
     .waitlist-content {
+        position: relative;
+        z-index: 3;
         width: 100%;
         max-width: 100%;
-        height: auto;
-        min-height: auto;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(4px);
         padding: var(--space-8);
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-lg);
-        filter: none;
-        background: var(--color-background);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-        /* Ensure content doesn't shift during scroll */
-        position: relative;
-        margin: var(--space-4) 0;
+        margin: var(--space-2);
     }
 
     .trust-badges { 
