@@ -627,9 +627,10 @@ body {
 
 
 
-/* Tablet Layout (481px-768px) - Card-based layout */
+/* Tablet Layout (481px-768px) - Stable card layout */
 @media (min-width: 481px) and (max-width: 768px) {
     .waitlist-container {
+        height: 100vh;
         min-height: 100vh;
         position: relative;
         display: flex;
@@ -638,26 +639,32 @@ body {
         justify-content: center;
         padding: var(--space-6);
         background: linear-gradient(135deg, var(--color-background) 0%, #f8fafc 100%);
+        /* Prevent viewport changes from affecting layout */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .background-image {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         object-fit: cover;
         object-position: center center;
         z-index: 1;
-        opacity: 0.2;
+        opacity: 0.15;
+        /* Prevent image from changing size during scroll */
+        transform: translateZ(0);
+        will-change: auto;
     }
 
     .overlay {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.98) 100%);
         z-index: 2;
     }
@@ -676,6 +683,8 @@ body {
         border-radius: var(--radius-xl);
         filter: drop-shadow(0 15px 40px rgba(0,0,0,0.08));
         text-align: center;
+        /* Ensure content doesn't shift during scroll */
+        margin: var(--space-4) 0;
     }
 }
 
@@ -1109,21 +1118,42 @@ body {
 
 /* Removed trust badges */
 
-/* Mobile Layout (up to 768px) - Full-width card layout */
+/* Mobile Layout (up to 768px) - Stable card layout */
 @media (max-width: 768px) {
+    /* Prevent mobile browser address bar from affecting layout */
+    html {
+        height: 100%;
+        height: -webkit-fill-available;
+    }
+    
     body { 
         overflow-y: auto; 
+        /* Prevent viewport changes from affecting layout */
+        height: 100%;
+        height: -webkit-fill-available;
+        position: fixed;
+        width: 100%;
+        /* Prevent zoom on input focus */
+        touch-action: manipulation;
     }
     
     .waitlist-container {
-        height: auto;
+        height: 100vh;
         min-height: 100vh;
+        min-height: -webkit-fill-available;
         padding: var(--space-4);
         background: linear-gradient(135deg, var(--color-background) 0%, #f8fafc 100%);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        /* Prevent scroll-related layout shifts */
+        position: relative;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Ensure stable layout */
+        transform: translateZ(0);
+        will-change: auto;
     }
 
     .background-image {
@@ -1136,6 +1166,7 @@ body {
 
     .waitlist-content {
         width: 100%;
+        max-width: 100%;
         height: auto;
         min-height: auto;
         padding: var(--space-8);
@@ -1148,6 +1179,9 @@ body {
         justify-content: center;
         align-items: center;
         text-align: center;
+        /* Ensure content doesn't shift during scroll */
+        position: relative;
+        margin: var(--space-4) 0;
     }
 
     .trust-badges { 
